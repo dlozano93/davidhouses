@@ -2,9 +2,9 @@ import React from "react";
 import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
 
-export const Home = () => (
+export const Houseview = () => (
 	<div className="text-center mt-5">
-		<h1>Home</h1>
+		<h1>Houses1!</h1>
 		<p>
 			<img src={rigoImage} />
 		</p>
