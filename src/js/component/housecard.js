@@ -22,15 +22,17 @@ export const HouseCard = props => {
 								my-5
 								mx-5
 								 text-center">
-			<h2>{"name: " + props.name}</h2>
+			<h2>{props.name}</h2>
 			<br />
-			<img className="img-thumbnail" src={rigoImage} alt="Card image cap" />
+			<img className="img-thumbnail" src={props.image} alt="Card image cap" />
 			<br />
 			<span>{"Address: " + props.address}</span>
 			<br />
 			<span>{"Price: " + props.price}</span>
 			<br />
-			<div className="btn btn-info">{"More info"}</div>
+			<div className="btn btn-info" onClick={() => props.onOpen()}>
+				{"More info"}
+			</div>
 		</div>
 	);
 };
@@ -41,11 +43,12 @@ export const HouseCard = props => {
  **/
 HouseCard.propTypes = {
 	history: PropTypes.object,
-	onClick: PropTypes.func,
+	onOpen: PropTypes.func,
 	price: PropTypes.price,
 	address: PropTypes.address,
 	index: PropTypes.number,
-	name: PropTypes.name
+	name: PropTypes.name,
+	image: PropTypes.image
 };
 
 /**

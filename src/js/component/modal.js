@@ -9,6 +9,7 @@ export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
 	});
+	//
 
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
@@ -57,6 +58,7 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
+	onOpen: PropTypes.func,
 	show: PropTypes.bool,
 	id: PropTypes.number
 };
