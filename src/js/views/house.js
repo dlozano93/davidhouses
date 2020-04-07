@@ -9,7 +9,7 @@ import { Context } from "../store/appContext";
 export const House = () => {
 	const [state, setState] = useState({
 		showModal: false,
-		id: null
+		index: null
 	});
 	const { store, actions } = useContext(Context);
 
@@ -21,7 +21,7 @@ export const House = () => {
 						{store.houses.map((item, index) => {
 							return (
 								<HouseCard
-									onOpen={() => setState({ showModal: true })}
+									onOpen={() => setState({ showModal: true, index: index })}
 									key={index}
 									index={index}
 									name={item.post_title}
@@ -38,7 +38,12 @@ export const House = () => {
 					</div>
 				</div>
 			</div>
-			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />;
+			<Modal
+				show={state.showModal}
+				index={state.index}
+				onClose={() => setState({ showModal: false, index: null })}
+			/>
+			;
 		</>
 	);
 };

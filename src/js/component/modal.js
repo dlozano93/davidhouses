@@ -4,22 +4,23 @@ import PropTypes from "prop-types";
 import { Context } from "../store/appContext";
 import rigoImage from "../../img/rigo-baby.jpg";
 
-export const Modal = props => {
+export const Modal = ({ index, onClose, onOpen, show }) => {
 	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		//initialize state here
 	});
 	//
+	let item = index !== null ? store.houses[index] : {};
 
 	return (
-		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
+		<div className="modal" tabIndex="-1" role="dialog" style={{ display: show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
 				<div className="modal-content">
 					<div className="modal-header">
 						<h5 className="modal-title">Are you sure?</h5>
-						{props.onClose ? (
+						{onClose ? (
 							<button
-								onClick={() => props.onClose()}
+								onClick={() => onClose()}
 								type="button"
 								className="close"
 								data-dismiss="modal"
@@ -30,19 +31,23 @@ export const Modal = props => {
 							""
 						)}
 					</div>
+
 					<div className="modal-body">
 						<div className="row">
 							<div className="col">
-								<img className="img-thumbnail" src={rigoImage} alt="Card image cap" />
+								<img
+									className="img-thumbnail"
+									src={index !== null && item.image.sizes.thumbnail}
+									alt="Card image cap"
+								/>
 							</div>
 							<div className="col">
-								<h2>Price:</h2>
-								<h2>Address:</h2>
-								<h2>Rooms:</h2>
-								<h2>Baths:</h2>
-								<h2>Type:</h2>
-								<h2>Sell:</h2>
-								<h2>Rent:</h2>
+								<p>{"Price: " + item.price}</p>
+								<p>{"Address: " + item.address}</p>
+								<p>{"Rooms: " + item.rooms}</p>
+								<p>{"Baths: " + item.baths}</p>
+								<p>{"Sell: " + item.sell}</p>
+								<p>{"Rent: " + item.rent}</p>
 							</div>
 						</div>
 					</div>
@@ -56,11 +61,10 @@ export const Modal = props => {
  * your component's properties
  **/
 Modal.propTypes = {
-	history: PropTypes.object,
 	onClose: PropTypes.func,
 	onOpen: PropTypes.func,
 	show: PropTypes.bool,
-	id: PropTypes.number
+	index: PropTypes.number
 };
 
 /**
